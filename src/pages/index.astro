@@ -1,11 +1,64 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Home/Hero.astro";
+import Description from "../components/Home/Description.astro";
+import FeaturedProducts from "../components/Home/FeaturedProducts.astro";
+import Brands from "../components/Home/Brands.astro";
+import CallToContact from "../components/Home/CallToContact.astro";
+import ICI from "../components/Home/ICI-Preview.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="IDN - Sistemas Industriales Integrados | Soluciones para Procesamiento de Materiales"
+  description="Especialistas en mezclado, pesaje, dosificación, transporte y más. Más de 30 años optimizando procesos industriales con productos técnicamente superiores."
+  keywords="sistemas industriales, mezclado industrial, dosificación, transporte neumático, válvulas industriales, equipos procesamiento"
+>
+  <!-- Hero Section -->
+  <Hero
+    title="Optimiza tu planta industrial"
+    subtitle="A través de los mejores productos, servicios y personal técnicamente calificado, satisfacemos requerimientos de mezclado, pesaje, nivel, dosificación, colección, activación, separación, purificación, detección y transporte de materiales y fluidos."
+  />
+
+  <Description />
+
+  <FeaturedProducts />
+
+  <Brands />
+
+  <CallToContact />
+
+  <ICI />
+</BaseLayout>
+
+<style>
+  .brand-logo img {
+    max-height: 60px;
+    width: auto;
+    filter: grayscale(1);
+  }
+
+  .brand-logo:hover img {
+    filter: grayscale(0);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .processes-showcase {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .brands-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .processes-showcase {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

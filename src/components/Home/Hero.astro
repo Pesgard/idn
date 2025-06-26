@@ -1,0 +1,204 @@
+---
+export interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  videoSrc?: string;
+}
+
+const {
+  title,
+  subtitle = "A través de los mejores productos, servicios y personal técnicamente calificado, satisfacemos requerimientos de mezclado, pesaje, nivel, dosificación y más.",
+  ctaText = "Solicita tu diagnóstico sin costo",
+  ctaLink = "/contacto",
+  videoSrc = "/hero-video.mp4",
+} = Astro.props;
+---
+
+<section class="hero relative h-screen flex items-center justify-center overflow-hidden">
+  <!-- Video background -->
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="absolute inset-0 w-full h-full object-cover z-0 opacity-50"
+  >
+    <source src={videoSrc} type="video/mp4" />
+    Tu navegador no soporta el video de fondo.
+  </video>
+
+  <!-- Dark overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Contenido -->
+  <div class="container relative z-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Título principal -->
+      <div class="text-center mb-8">
+        <h1 class="title-xl text-white mb-4 animate-fade-in-up leading-tight">
+          <span class="block text-3xl md:text-5xl lg:text-6xl font-bold mb-2">Optimiza tu planta con</span>
+          <span class="text-accent typewriter text-2xl md:text-4xl lg:text-5xl font-bold">
+            sistemas industriales integrados
+          </span>
+        </h1>
+        
+        <!-- Subtítulo más compacto -->
+        <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto animate-on-scroll leading-relaxed">
+          {subtitle}
+        </p>
+      </div>
+
+      <!-- Procesos clave reorganizados horizontalmente -->
+      <div class="processes-grid grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 animate-on-scroll">
+        <div class="process-item">
+          <div class="icon-circle">🔄</div>
+          <span>Mezclado</span>
+        </div>
+        <div class="process-item">
+          <div class="icon-circle">⚖️</div>
+          <span>Pesaje</span>
+        </div>
+        <div class="process-item">
+          <div class="icon-circle">📊</div>
+          <span>Dosificación</span>
+        </div>
+        <div class="process-item">
+          <div class="icon-circle">🚀</div>
+          <span>Transporte</span>
+        </div>
+      </div>
+
+      <!-- Call to Action compacto -->
+      <div class="cta-section text-center animate-on-scroll pt-12">
+        <a href={ctaLink} class="btn btn-primary btn-lg animate-pulse mb-3">
+          {ctaText}
+        </a>
+        <p class="text-sm text-gray-400">
+          ✓ Diagnóstico profesional ✓ Más de 30 años de experiencia ✓ Sin compromiso
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Indicador de scroll -->
+  <div class="scroll-indicator absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+    <div class="animate-bounce">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<style>
+  .btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .processes-grid {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .process-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-white);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .icon-circle {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--color-accent) 0%, #ff4757 100%);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--transition-normal);
+  }
+
+  .process-item:hover .icon-circle {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  /* Animación typewriter */
+  .typewriter {
+    border-right: 2px solid var(--color-accent);
+    animation:
+      typewriter 3s steps(30) 1s forwards,
+      blink 1s infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 0;
+    display: inline-block;
+  }
+
+  @keyframes typewriter {
+    from {
+      max-width: 0;
+    }
+    to {
+      max-width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    0%, 50% {
+      border-color: var(--color-accent);
+    }
+    51%, 100% {
+      border-color: transparent;
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .processes-grid {
+      gap: 1rem;
+    }
+
+    .icon-circle {
+      width: 45px;
+      height: 45px;
+      font-size: 1.1rem;
+    }
+
+    .typewriter {
+      white-space: normal;
+      overflow: visible;
+      max-width: none;
+      border-right: none;
+      animation: none;
+      display: block;
+    }
+
+    .hero {
+      min-height: 100vh;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .processes-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    
+    .icon-circle {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+  }
+</style>
+

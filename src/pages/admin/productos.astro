@@ -1,0 +1,515 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Administrar Productos - IDN Industrial"
+  description="Panel de administración para gestionar productos"
+  keywords="admin, productos, gestión"
+>
+  <div class="min-h-screen bg-gray-50 pt-24">
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+          <div>
+            <h1 class="text-3xl font-bold text-primary">Administrar Productos</h1>
+            <p class="text-gray-600 mt-2">Gestiona el catálogo de productos disponibles</p>
+          </div>
+          <button 
+            id="add-product-btn"
+            class="btn-primary"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            Nuevo Producto
+          </button>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+          <div class="flex flex-wrap gap-4 items-center">
+            <div class="flex-1 min-w-64">
+              <input 
+                type="text" 
+                id="search-input"
+                placeholder="Buscar productos..."
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+              >
+            </div>
+            <select id="category-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent">
+              <option value="">Todas las categorías</option>
+            </select>
+            <select id="status-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent">
+              <option value="">Todos los estados</option>
+              <option value="active">Activos</option>
+              <option value="inactive">Inactivos</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading" class="text-center py-12">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
+          <p class="mt-2 text-gray-600">Cargando productos...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="hidden bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="text-red-800">Error al cargar productos: </span>
+            <span id="error-message" class="text-red-600 ml-1"></span>
+          </div>
+        </div>
+
+        <!-- Products Table -->
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+          <table class="w-full">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Producto</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoría</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Orden</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="products-table" class="bg-white divide-y divide-gray-200">
+              <!-- Products will be loaded here -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="hidden text-center py-12">
+          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-2M4 13h2m13-8V4a1 1 0 00-1-1H7a1 1 0 00-1 1v1m10 0H8"></path>
+          </svg>
+          <h3 class="mt-2 text-sm font-medium text-gray-900">No hay productos</h3>
+          <p class="mt-1 text-sm text-gray-500">Comienza agregando un nuevo producto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Modal -->
+  <div id="product-modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden z-50">
+    <div class="flex items-center justify-center min-h-screen p-4">
+      <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-screen overflow-y-auto">
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-4">
+            <h2 id="modal-title" class="text-xl font-bold text-primary">Nuevo Producto</h2>
+            <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+
+          <form id="product-form">
+            <input type="hidden" id="product-id">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Title -->
+              <div class="md:col-span-2">
+                <label for="product-title" class="block text-sm font-medium text-gray-700 mb-1">Título *</label>
+                <input 
+                  type="text" 
+                  id="product-title" 
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                >
+              </div>
+
+              <!-- Category -->
+              <div>
+                <label for="product-category" class="block text-sm font-medium text-gray-700 mb-1">Categoría *</label>
+                <input 
+                  type="text" 
+                  id="product-category" 
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                >
+              </div>
+
+              <!-- Display Order -->
+              <div>
+                <label for="product-order" class="block text-sm font-medium text-gray-700 mb-1">Orden de visualización</label>
+                <input 
+                  type="number" 
+                  id="product-order" 
+                  min="0"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                >
+              </div>
+
+              <!-- Image URL -->
+              <div class="md:col-span-2">
+                <label for="product-image" class="block text-sm font-medium text-gray-700 mb-1">URL de imagen *</label>
+                <input 
+                  type="url" 
+                  id="product-image" 
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                >
+              </div>
+
+              <!-- Brochure URL -->
+              <div class="md:col-span-2">
+                <label for="product-brochure" class="block text-sm font-medium text-gray-700 mb-1">URL del folleto</label>
+                <input 
+                  type="url" 
+                  id="product-brochure"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                >
+              </div>
+
+              <!-- Description -->
+              <div class="md:col-span-2">
+                <label for="product-description" class="block text-sm font-medium text-gray-700 mb-1">Descripción *</label>
+                <textarea 
+                  id="product-description" 
+                  required
+                  rows="3"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                ></textarea>
+              </div>
+
+              <!-- Features -->
+              <div class="md:col-span-2">
+                <label for="product-features" class="block text-sm font-medium text-gray-700 mb-1">Características *</label>
+                <textarea 
+                  id="product-features" 
+                  required
+                  rows="3"
+                  placeholder="Una característica por línea"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent"
+                ></textarea>
+                <p class="text-xs text-gray-500 mt-1">Separa cada característica con una nueva línea</p>
+              </div>
+
+              <!-- Active Status -->
+              <div class="md:col-span-2">
+                <label class="flex items-center">
+                  <input type="checkbox" id="product-active" class="mr-2 rounded">
+                  <span class="text-sm font-medium text-gray-700">Producto activo</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="flex justify-end gap-3 mt-6">
+              <button type="button" id="cancel-btn" class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300">
+                Cancelar
+              </button>
+              <button type="submit" class="btn-primary">
+                <span id="save-text">Guardar</span>
+                <span id="saving-text" class="hidden">Guardando...</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  let products = [];
+  let categories = [];
+
+  // DOM Elements
+  const loading = document.getElementById('loading');
+  const error = document.getElementById('error');
+  const errorMessage = document.getElementById('error-message');
+  const productsTable = document.getElementById('products-table');
+  const emptyState = document.getElementById('empty-state');
+  const searchInput = document.getElementById('search-input');
+  const categoryFilter = document.getElementById('category-filter');
+  const statusFilter = document.getElementById('status-filter');
+  
+  // Modal elements
+  const modal = document.getElementById('product-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const addProductBtn = document.getElementById('add-product-btn');
+  const closeModalBtn = document.getElementById('close-modal');
+  const cancelBtn = document.getElementById('cancel-btn');
+  const productForm = document.getElementById('product-form');
+
+  // Form elements
+  const productId = document.getElementById('product-id');
+  const productTitle = document.getElementById('product-title');
+  const productCategory = document.getElementById('product-category');
+  const productOrder = document.getElementById('product-order');
+  const productImage = document.getElementById('product-image');
+  const productBrochure = document.getElementById('product-brochure');
+  const productDescription = document.getElementById('product-description');
+  const productFeatures = document.getElementById('product-features');
+  const productActive = document.getElementById('product-active');
+  const saveText = document.getElementById('save-text');
+  const savingText = document.getElementById('saving-text');
+
+  // Load products on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    loadProducts();
+  });
+
+  async function loadProducts() {
+    try {
+      showLoading();
+      
+      const response = await fetch('/api/products?includeInactive=true');
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to fetch products');
+      }
+      
+      products = data.products || [];
+      await loadCategories();
+      renderProducts();
+      hideLoading();
+    } catch (err) {
+      showError(err.message);
+      hideLoading();
+    }
+  }
+
+  async function loadCategories() {
+    try {
+      const response = await fetch('/api/products?categoriesOnly=true');
+      const data = await response.json();
+      
+      if (response.ok) {
+        categories = data.categories || [];
+        renderCategoryFilter();
+      }
+    } catch (err) {
+      console.error('Failed to load categories:', err);
+    }
+  }
+
+  function renderCategoryFilter() {
+    categoryFilter.innerHTML = '<option value="">Todas las categorías</option>';
+    categories.forEach(category => {
+      const option = document.createElement('option');
+      option.value = category;
+      option.textContent = category;
+      categoryFilter.appendChild(option);
+    });
+  }
+
+  function renderProducts() {
+    const filteredProducts = filterProducts();
+    
+    if (filteredProducts.length === 0) {
+      productsTable.innerHTML = '';
+      emptyState.classList.remove('hidden');
+      return;
+    }
+    
+    emptyState.classList.add('hidden');
+    
+    productsTable.innerHTML = filteredProducts.map(product => `
+      <tr>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <div class="flex items-center">
+            <img class="h-10 w-10 rounded-lg object-cover mr-3" src="${product.image}" alt="${product.title}">
+            <div>
+              <div class="text-sm font-medium text-gray-900">${product.title}</div>
+              <div class="text-sm text-gray-500">${product.description.substring(0, 50)}...</div>
+            </div>
+          </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+            ${product.category}
+          </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${product.is_active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+            ${product.is_active ? 'Activo' : 'Inactivo'}
+          </span>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+          ${product.display_order || 999}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+          <div class="flex space-x-2">
+            <button onclick="editProduct('${product.id}')" class="text-blue-600 hover:text-blue-900">Editar</button>
+            <button onclick="toggleProductStatus('${product.id}')" class="text-${product.is_active ? 'red' : 'green'}-600 hover:text-${product.is_active ? 'red' : 'green'}-900">
+              ${product.is_active ? 'Desactivar' : 'Activar'}
+            </button>
+            <button onclick="deleteProduct('${product.id}')" class="text-red-600 hover:text-red-900">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function filterProducts() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const categoryTerm = categoryFilter.value;
+    const statusTerm = statusFilter.value;
+    
+    return products.filter(product => {
+      const matchesSearch = product.title.toLowerCase().includes(searchTerm) || 
+                           product.description.toLowerCase().includes(searchTerm);
+      const matchesCategory = !categoryTerm || product.category === categoryTerm;
+      const matchesStatus = !statusTerm || 
+                           (statusTerm === 'active' && product.is_active) ||
+                           (statusTerm === 'inactive' && !product.is_active);
+      
+      return matchesSearch && matchesCategory && matchesStatus;
+    });
+  }
+
+  function showLoading() {
+    loading.classList.remove('hidden');
+    error.classList.add('hidden');
+  }
+
+  function hideLoading() {
+    loading.classList.add('hidden');
+  }
+
+  function showError(message) {
+    errorMessage.textContent = message;
+    error.classList.remove('hidden');
+  }
+
+  function openModal(title = 'Nuevo Producto') {
+    modalTitle.textContent = title;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    productForm.reset();
+    productId.value = '';
+  }
+
+  function editProduct(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    
+    productId.value = product.id;
+    productTitle.value = product.title;
+    productCategory.value = product.category;
+    productOrder.value = product.display_order || '';
+    productImage.value = product.image;
+    productBrochure.value = product.brochure_url || '';
+    productDescription.value = product.description;
+    productFeatures.value = product.features.join('\n');
+    productActive.checked = product.is_active;
+    
+    openModal('Editar Producto');
+  }
+
+  async function toggleProductStatus(id) {
+    try {
+      const response = await fetch(`/api/products/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ is_active: !products.find(p => p.id === id).is_active })
+      });
+      
+      if (response.ok) {
+        await loadProducts();
+      } else {
+        const data = await response.json();
+        alert('Error: ' + (data.error || 'Failed to update product status'));
+      }
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
+  }
+
+  async function deleteProduct(id) {
+    if (!confirm('¿Estás seguro de que quieres eliminar este producto?')) return;
+    
+    try {
+      const response = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+      
+      if (response.ok) {
+        await loadProducts();
+      } else {
+        const data = await response.json();
+        alert('Error: ' + (data.error || 'Failed to delete product'));
+      }
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
+  }
+
+  // Event Listeners
+  addProductBtn.addEventListener('click', () => openModal());
+  closeModalBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  
+  // Close modal on outside click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Search and filter listeners
+  searchInput.addEventListener('input', renderProducts);
+  categoryFilter.addEventListener('change', renderProducts);
+  statusFilter.addEventListener('change', renderProducts);
+
+  // Form submission
+  productForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const isEditing = !!productId.value;
+    const features = productFeatures.value.split('\n').filter(f => f.trim());
+    
+    const productData = {
+      title: productTitle.value,
+      category: productCategory.value,
+      description: productDescription.value,
+      image: productImage.value,
+      features,
+      brochure_url: productBrochure.value || null,
+      is_active: productActive.checked,
+      display_order: parseInt(productOrder.value) || 999
+    };
+    
+    try {
+      saveText.classList.add('hidden');
+      savingText.classList.remove('hidden');
+      
+      const url = isEditing ? `/api/products/${productId.value}` : '/api/products/create';
+      const method = isEditing ? 'PUT' : 'POST';
+      
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(productData)
+      });
+      
+      if (response.ok) {
+        closeModal();
+        await loadProducts();
+      } else {
+        const data = await response.json();
+        alert('Error: ' + (data.error || 'Failed to save product'));
+      }
+    } catch (err) {
+      alert('Error: ' + err.message);
+    } finally {
+      saveText.classList.remove('hidden');
+      savingText.classList.add('hidden');
+    }
+  });
+
+  // Make functions global for onclick handlers
+  window.editProduct = editProduct;
+  window.toggleProductStatus = toggleProductStatus;
+  window.deleteProduct = deleteProduct;
+</script> 

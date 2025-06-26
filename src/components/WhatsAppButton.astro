@@ -1,0 +1,336 @@
+---
+---
+
+<div class="whatsapp-button-container">
+  <a 
+    href="https://wa.me/5212345678901?text=Hola%2C%20soy%20de%20IDN%20Sistemas%20Industriales.%20Me%20interesa%20conocer%20más%20sobre%20sus%20soluciones%20para%20optimizar%20mi%20proceso%20industrial." 
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-float"
+    title="Contactar por WhatsApp - Diagnóstico gratuito"
+    aria-label="Contactar por WhatsApp"
+  >
+    <!-- WhatsApp Icon -->
+    <svg class="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.386"/>
+    </svg>
+    
+    <!-- Tooltip -->
+    <div class="whatsapp-tooltip">
+      <div class="tooltip-content">
+        <div class="tooltip-title">💬 Chatea con nosotros</div>
+        <div class="tooltip-subtitle">Diagnóstico gratuito en línea</div>
+      </div>
+    </div>
+    
+    <!-- Online indicator -->
+    <div class="online-indicator">
+      <div class="online-dot"></div>
+    </div>
+  </a>
+  
+  <!-- Notification badge (optional, can be controlled via JS) -->
+  <div class="notification-badge hidden" id="whatsapp-notification">
+    <span>1</span>
+  </div>
+</div>
+
+<style>
+  .whatsapp-button-container {
+    position: fixed;
+    bottom: var(--spacing-xl);
+    right: var(--spacing-xl);
+    z-index: 1000;
+  }
+  
+  .whatsapp-float {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: var(--color-white);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    box-shadow: var(--shadow-xl);
+    transition: all var(--transition-normal);
+    overflow: visible;
+    cursor: pointer;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .whatsapp-float::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+    border-radius: var(--radius-full);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .whatsapp-float:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .whatsapp-float:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .whatsapp-icon {
+    width: 32px;
+    height: 32px;
+    z-index: 1;
+    position: relative;
+  }
+  
+  /* Tooltip */
+  .whatsapp-tooltip {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--color-white);
+    color: var(--color-primary);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+    white-space: nowrap;
+    border: 1px solid var(--color-gray-200);
+  }
+  
+  .whatsapp-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -6px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid var(--color-white);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+  }
+  
+  .whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(-8px);
+  }
+  
+  .tooltip-title {
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+  }
+  
+  .tooltip-subtitle {
+    font-size: 0.75rem;
+    color: var(--color-gray-600);
+  }
+  
+  /* Online indicator */
+  .online-indicator {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 18px;
+    height: 18px;
+    background: var(--color-white);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .online-dot {
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border-radius: var(--radius-full);
+    animation: pulse-online 2s infinite;
+  }
+  
+  @keyframes pulse-online {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Notification badge */
+  .notification-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--color-accent);
+    color: var(--color-white);
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    animation: bounce-notification 1s infinite;
+    border: 2px solid var(--color-white);
+  }
+  
+  @keyframes bounce-notification {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-8px);
+    }
+    60% {
+      transform: translateY(-4px);
+    }
+  }
+  
+  /* Floating animation */
+  .whatsapp-float {
+    animation: float-whatsapp 3s ease-in-out infinite;
+  }
+  
+  @keyframes float-whatsapp {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+  
+  .whatsapp-float:hover {
+    animation: none;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .whatsapp-button-container {
+      bottom: var(--spacing-lg);
+      right: var(--spacing-lg);
+    }
+    
+    .whatsapp-float {
+      width: 56px;
+      height: 56px;
+    }
+    
+    .whatsapp-icon {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .whatsapp-tooltip {
+      right: 65px;
+      padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .tooltip-title {
+      font-size: 0.8rem;
+    }
+    
+    .tooltip-subtitle {
+      font-size: 0.7rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .whatsapp-float {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .whatsapp-icon {
+      width: 24px;
+      height: 24px;
+    }
+    
+    /* Hide tooltip on very small screens */
+    .whatsapp-tooltip {
+      display: none;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .whatsapp-float {
+      border: 3px solid var(--color-primary);
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .whatsapp-float,
+    .online-dot,
+    .notification-badge {
+      animation: none;
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.05);
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const whatsappButton = document.querySelector('.whatsapp-float');
+    const notification = document.getElementById('whatsapp-notification');
+    
+    // Track user interaction for analytics (optional)
+    whatsappButton?.addEventListener('click', () => {
+      // You can add analytics tracking here
+      console.log('WhatsApp button clicked');
+      
+      // Hide notification if visible
+      if (notification && !notification.classList.contains('hidden')) {
+        notification.classList.add('hidden');
+      }
+      
+      // Optional: Store in localStorage that user interacted
+      localStorage.setItem('whatsapp-contacted', 'true');
+    });
+    
+    // Optional: Show notification after some time if user hasn't contacted
+    const hasContacted = localStorage.getItem('whatsapp-contacted');
+    if (!hasContacted) {
+      setTimeout(() => {
+        if (notification) {
+          notification.classList.remove('hidden');
+          
+          // Auto-hide after 10 seconds
+          setTimeout(() => {
+            notification.classList.add('hidden');
+          }, 10000);
+        }
+      }, 30000); // Show after 30 seconds
+    }
+    
+    // Add entrance animation
+    setTimeout(() => {
+      whatsappButton?.classList.add('animate-fade-in-up');
+    }, 2000);
+  });
+</script>

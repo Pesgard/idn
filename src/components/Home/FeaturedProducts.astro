@@ -1,0 +1,59 @@
+---
+import ProductCard from '../Products/ProductCard.astro';
+
+
+const products = [
+  {
+    title: "Mezcladores Industriales",
+    description: "Mezcladores de alta eficiencia para todo tipo de materiales sólidos y líquidos.",
+    image: "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+    category: "Mezclado",
+    features: ["Alta eficiencia", "Bajo consumo energético", "Fácil mantenimiento"],
+    brochureUrl: "/brochures/mezcladores.pdf"
+  },
+  {
+    title: "Sistemas de Pesaje",
+    description: "Básculas industriales de precisión para control de peso en procesos.",
+    image: "https://images.pexels.com/photos/3862125/pexels-photo-3862125.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+    category: "Pesaje",
+    features: ["Alta precisión", "Certificación industrial", "Conectividad digital"],
+    brochureUrl: "/brochures/pesaje.pdf"
+  },
+  {
+    title: "Dosificadores Automáticos",
+    description: "Sistemas de dosificación precisa para materiales en polvo y granulados.",
+    image: "https://images.pexels.com/photos/3862130/pexels-photo-3862130.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+    category: "Dosificación",
+    features: ["Control automático", "Dosificación precisa", "Interfaz intuitiva"],
+    brochureUrl: "/brochures/dosificadores.pdf"
+  }
+];
+
+
+---
+ 
+<!-- Featured Products Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 animate-on-scroll">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+          Productos Destacados
+        </h2>
+        <p class="text-xl text-gray-600 max-w-prose mx-auto">
+          Selecciona la solución perfecta para tu proceso industrial
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {products.map(product => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+      
+      <div class="text-center animate-on-scroll">
+        <a href="/productos" class="btn btn-primary">
+          Ver Todos los Productos
+        </a>
+      </div>
+    </div>
+  </section>

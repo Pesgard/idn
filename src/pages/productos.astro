@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/Products/ProductCard.astro';
+import Button from '../components/Button.astro';
+import { getProducts, getCategories } from '../lib/supabase-products';
+
+// Fetch products from Supabase
+let allProducts = [];
+let categories = ['Todos'];
+let error = null;
+
+try {
+  allProducts = await getProducts(true);
+  const dbCategories = await getCategories();
+  categories = ['Todos', ...dbCategories];
+} catch (e) {
+  error = e instanceof Error ? e.message : 'Failed to fetch products';
+  console.error('Error fetching products:', e);
+  
+  // Fallback data in case of error
+  allProducts = [
+    {
+      id: "fallback-1",
+      title: "Error al cargar productos",
+      description: "No se pudieron cargar los productos desde la base de datos.",
+      image: "https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
+      category: "Error",
+      features: ["Por favor contacte al administrador"],
+      brochure_url: null,
+      is_active: true,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
+  ];
+  categories = ['Todos', 'Error'];
+}
+---
+
+<BaseLayout 
+  title="Productos - IDN Industrial"
+  description="Catálogo completo de productos industriales: mezcladores, básculas, dosificadores, transportadores y detectores para optimizar tus procesos."
+  keywords="mezcladores industriales, básculas, dosificadores, transportadores, detectores metales, equipos industriales"
+>
+  <!-- Hero Section -->
+  <section class="pt-24 pb-16 bg-accent text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-prose mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
+          Encuentra el Componente Ideal para tu Proceso
+        </h1>
+        <p class="text-xl text-white mb-8 leading-relaxed animate-slide-up">
+          Nuestro catálogo completo de productos industriales te ayudará a optimizar 
+          cada etapa de tu proceso productivo
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filters and Products Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <!-- Category Filters -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12 animate-on-scroll">
+        {categories.map(category => (
+          <button 
+            class="px-6 py-3 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors font-medium filter-btn"
+            data-category={category}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+        {allProducts.map(product => (
+          <div class="product-card" data-category={product.category}>
+            <ProductCard 
+              title={product.title}
+              description={product.description}
+              image={product.image}
+              category={product.category}
+              features={product.features}
+              brochureUrl={product.brochure_url || undefined}
+            />
+          </div>
+        ))}
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center mt-12 animate-on-scroll">
+        <p class="text-gray-600 mb-6">
+          ¿No encuentras lo que buscas? Contáctanos para soluciones personalizadas
+        </p>
+        <Button href="/contacto" variant="primary" size="lg">
+          Solicitar Producto Personalizado
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Support Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center animate-on-scroll">
+        <h2 class="text-3xl md:text-4xl font-bold text-secondary-800 mb-6">
+          Soporte Técnico Especializado
+        </h2>
+        <p class="text-xl text-gray-600 mb-8">
+          Cada producto incluye documentación técnica completa y soporte especializado
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-6 bg-gray-50 rounded-xl">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-secondary-800 mb-2">Fichas Técnicas</h3>
+            <p class="text-gray-600">Documentación completa con especificaciones, dimensiones y capacidades</p>
+          </div>
+          
+          <div class="p-6 bg-gray-50 rounded-xl">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 12h.01"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-secondary-800 mb-2">Asesoría Técnica</h3>
+            <p class="text-gray-600">Ingenieros especializados para selección y dimensionamiento</p>
+          </div>
+          
+          <div class="p-6 bg-gray-50 rounded-xl">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-secondary-800 mb-2">Servicio Post-Venta</h3>
+            <p class="text-gray-600">Mantenimiento, refacciones y actualizaciones disponibles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+    
+    // Set initial active state
+    filterButtons[0].classList.add('bg-primary', 'text-white');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.getAttribute('data-category');
+        
+        // Update active button
+        filterButtons.forEach(btn => {
+          btn.classList.remove('bg-primary', 'text-white');
+          btn.classList.add('text-primary');
+        });
+        button.classList.add('bg-primary', 'text-white');
+        button.classList.remove('text-primary');
+        
+        // Filter products
+        productCards.forEach(card => {
+          const cardCategory = card.getAttribute('data-category');
+          if (category === 'Todos' || cardCategory === category) {
+            (card as HTMLElement).style.display = 'block';
+            card.classList.add('animate-fade-in');
+          } else {
+            (card as HTMLElement).style.display = 'none';
+            card.classList.remove('animate-fade-in');
+          }
+        });
+      });
+    });
+  });
+</script>

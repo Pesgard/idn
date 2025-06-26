@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import ContactForm from '../components/Contact/ContactForm.astro';
+---
+
+<BaseLayout 
+  title="Integraciones - Sistemas IDN"
+  description="Soluciones integrales que combinan múltiples procesos industriales en un solo sistema optimizado para máxima eficiencia."
+  keywords="sistemas integrados, automatización industrial, soluciones integrales, procesos industriales, integración sistemas"
+>
+  <!-- Hero Section -->
+  <section class="pt-24 pb-16 bg-primary text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
+          Sistemas Integrados IDN
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 leading-relaxed animate-slide-up">
+          Integramos múltiples procesos en un solo sistema optimizado para maximizar 
+          la eficiencia y reducir costos operativos
+        </p>
+        <Button href="/contacto" variant="accent" size="lg" class="animate-slide-up">
+          Solicitar Diagnóstico Personalizado
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- System Integration Infographic -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12 animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Cómo Funciona Nuestro Sistema Integral
+          </h2>
+          <p class="text-xl text-gray-600">
+            Desde la recepción hasta el envasado final, integramos cada proceso
+          </p>
+        </div>
+
+        <!-- Process Flow -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div class="text-center animate-on-scroll">
+            <div class="w-20 h-20 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center mx-auto mb-4 text-3xl">
+              📥
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+              <div class="text-sm font-bold text-gray-500 mb-2">PASO 1</div>
+              <h3 class="text-xl font-bold text-primary mb-2">Recepción</h3>
+              <p class="text-gray-600">Descarga automática con control de peso y calidad</p>
+            </div>
+          </div>
+
+          <div class="text-center animate-on-scroll">
+            <div class="w-20 h-20 rounded-full bg-green-100 text-green-800 flex items-center justify-center mx-auto mb-4 text-3xl">
+              ⚙️
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+              <div class="text-sm font-bold text-gray-500 mb-2">PASO 2</div>
+              <h3 class="text-xl font-bold text-primary mb-2">Procesamiento</h3>
+              <p class="text-gray-600">Mezclado, dosificación y tratamiento automatizado</p>
+            </div>
+          </div>
+
+          <div class="text-center animate-on-scroll">
+            <div class="w-20 h-20 rounded-full bg-purple-100 text-purple-800 flex items-center justify-center mx-auto mb-4 text-3xl">
+              📊
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+              <div class="text-sm font-bold text-gray-500 mb-2">PASO 3</div>
+              <h3 class="text-xl font-bold text-primary mb-2">Control</h3>
+              <p class="text-gray-600">Monitoreo en tiempo real y ajustes automáticos</p>
+            </div>
+          </div>
+
+          <div class="text-center animate-on-scroll">
+            <div class="w-20 h-20 rounded-full bg-orange-100 text-orange-800 flex items-center justify-center mx-auto mb-4 text-3xl">
+              📦
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+              <div class="text-sm font-bold text-gray-500 mb-2">PASO 4</div>
+              <h3 class="text-xl font-bold text-primary mb-2">Envasado</h3>
+              <p class="text-gray-600">Empaquetado final con control de peso y etiquetado</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Process Flow Arrows -->
+        <div class="hidden lg:block relative">
+          <div class="absolute top-1/2 left-1/4 transform -translate-y-1/2">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div class="absolute top-1/2 left-1/2 transform -translate-y-1/2">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+          <div class="absolute top-1/2 left-3/4 transform -translate-y-1/2">
+            <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Cases -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 animate-on-scroll">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+          Casos de Éxito Técnicos
+        </h2>
+        <p class="text-xl text-gray-600">
+          Resultados reales de nuestras implementaciones
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+          <img src="https://images.pexels.com/photos/3862132/pexels-photo-3862132.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Industria Alimentaria" class="w-full h-48 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">Industria Alimentaria</h3>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-700 mb-1">Desafío:</h4>
+              <p class="text-gray-600 text-sm">Mezcla inconsistente de harinas</p>
+            </div>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-700 mb-1">Solución:</h4>
+              <p class="text-gray-600 text-sm">Sistema integrado de dosificación y mezclado automático</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-700 mb-2">Resultados:</h4>
+              <ul class="space-y-1">
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  40% mejora en homogeneidad
+                </li>
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  25% reducción en tiempo de proceso
+                </li>
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  60% menos desperdicio
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+          <img src="https://images.pexels.com/photos/3862125/pexels-photo-3862125.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Industria Química" class="w-full h-48 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">Industria Química</h3>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-700 mb-1">Desafío:</h4>
+              <p class="text-gray-600 text-sm">Control de peso impreciso en formulaciones</p>
+            </div>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-700 mb-1">Solución:</h4>
+              <p class="text-gray-600 text-sm">Básculas de precisión con sistema de dosificación automática</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-700 mb-2">Resultados:</h4>
+              <ul class="space-y-1">
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  99.8% precisión en formulaciones
+                </li>
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  30% aumento en productividad
+                </li>
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  Eliminación de reprocesos
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+          <img src="https://images.pexels.com/photos/3862130/pexels-photo-3862130.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Industria Farmacéutica" class="w-full h-48 object-cover"/>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-primary mb-2">Industria Farmacéutica</h3>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-700 mb-1">Desafío:</h4>
+              <p class="text-gray-600 text-sm">Contaminación cruzada en procesos</p>
+            </div>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-700 mb-1">Solución:</h4>
+              <p class="text-gray-600 text-sm">Sistema cerrado con transporte neumático y limpieza automática</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-gray-700 mb-2">Resultados:</h4>
+              <ul class="space-y-1">
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  100% eliminación de contaminación
+                </li>
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  Cumplimiento FDA
+                </li>
+                <li class="flex items-center text-sm text-gray-600">
+                  <svg class="w-4 h-4 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  50% reducción en limpieza
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Implementation Timeline -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12 animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Línea de Tiempo de Implementación
+          </h2>
+          <p class="text-xl text-gray-600">
+            Proceso estructurado para garantizar el éxito de tu proyecto
+          </p>
+        </div>
+
+        <div class="relative">
+          <!-- Timeline line -->
+          <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gray-200"></div>
+          
+          <div class="space-y-12">
+            <div class="relative flex items-center">
+              <div class="flex-1 pr-8 text-right animate-on-scroll">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                  <span class="text-sm font-bold text-accent">FASE 1</span>
+                  <h3 class="text-xl font-bold text-primary mb-2">Diagnóstico y Análisis</h3>
+                  <p class="text-gray-600 mb-2">1-2 semanas</p>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Evaluación del proceso actual</li>
+                    <li>• Identificación de oportunidades</li>
+                    <li>• Definición de objetivos</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="w-4 h-4 bg-accent rounded-full border-4 border-white shadow-lg z-10"></div>
+              <div class="flex-1 pl-8"></div>
+            </div>
+
+            <div class="relative flex items-center">
+              <div class="flex-1 pr-8"></div>
+              <div class="w-4 h-4 bg-accent rounded-full border-4 border-white shadow-lg z-10"></div>
+              <div class="flex-1 pl-8 animate-on-scroll">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                  <span class="text-sm font-bold text-accent">FASE 2</span>
+                  <h3 class="text-xl font-bold text-primary mb-2">Diseño e Ingeniería</h3>
+                  <p class="text-gray-600 mb-2">2-4 semanas</p>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Diseño técnico detallado</li>
+                    <li>• Selección de componentes</li>
+                    <li>• Documentación de proyecto</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative flex items-center">
+              <div class="flex-1 pr-8 text-right animate-on-scroll">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                  <span class="text-sm font-bold text-accent">FASE 3</span>
+                  <h3 class="text-xl font-bold text-primary mb-2">Fabricación e Instalación</h3>
+                  <p class="text-gray-600 mb-2">4-8 semanas</p>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Fabricación de componentes</li>
+                    <li>• Instalación en sitio</li>
+                    <li>• Pruebas preliminares</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="w-4 h-4 bg-accent rounded-full border-4 border-white shadow-lg z-10"></div>
+              <div class="flex-1 pl-8"></div>
+            </div>
+
+            <div class="relative flex items-center">
+              <div class="flex-1 pr-8"></div>
+              <div class="w-4 h-4 bg-accent rounded-full border-4 border-white shadow-lg z-10"></div>
+              <div class="flex-1 pl-8 animate-on-scroll">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                  <span class="text-sm font-bold text-accent">FASE 4</span>
+                  <h3 class="text-xl font-bold text-primary mb-2">Puesta en Marcha y Optimización</h3>
+                  <p class="text-gray-600 mb-2">1-2 semanas</p>
+                  <ul class="text-sm text-gray-600 space-y-1">
+                    <li>• Calibración y ajustes</li>
+                    <li>• Capacitación del personal</li>
+                    <li>• Optimización final</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-16 bg-primary text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-on-scroll">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            ¿Listo para Integrar tu Proceso?
+          </h2>
+          <p class="text-xl text-gray-300 mb-8">
+            Nuestros ingenieros están listos para analizar tu proceso sin costo 
+            y proponerte la mejor solución integrada.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Diagnóstico gratuito sin compromiso</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Garantía completa en todos los proyectos</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="w-6 h-6 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Soporte técnico continuo</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="animate-on-scroll">
+          <ContactForm 
+            title="Solicita tu Evaluación"
+            subtitle="Analicemos juntos cómo integrar y optimizar tu proceso"
+            variant="compact"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout> 

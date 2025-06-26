@@ -1,0 +1,451 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout 
+  title="Clientes - IDN Industrial"
+  description="Conoce los casos de éxito de IDN Industrial y las empresas que confían en nuestras soluciones técnicas especializadas."
+  keywords="casos de éxito, testimonios, clientes industriales, referencias técnicas, sectores industriales"
+>
+  <!-- Hero Section -->
+  <section class="pt-24 pb-16 bg-primary text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
+          Clientes que Confían en IDN
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 leading-relaxed animate-slide-up">
+          Más de 30 años construyendo relaciones de confianza con la industria nacional
+        </p>
+        <div class="flex justify-center items-center space-x-8 text-gray-300 animate-slide-up">
+          <div class="text-center">
+            <div class="text-3xl font-bold">500+</div>
+            <div class="text-sm">Proyectos Completados</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold">15</div>
+            <div class="text-sm">Sectores Industriales</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold">98%</div>
+            <div class="text-sm">Satisfacción del Cliente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Testimonials -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 animate-on-scroll">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+          Lo que Dicen Nuestros Clientes
+        </h2>
+        <p class="text-xl text-gray-600">
+          Testimonios reales de ingenieros y directivos de la industria
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="flex items-center mb-4">
+            <img 
+              src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" 
+              alt="Ing. Carlos Mendoza"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+            />
+            <div>
+              <h3 class="font-bold text-primary">Ing. Carlos Mendoza</h3>
+              <p class="text-sm text-gray-600">Gerente de Producción</p>
+              <p class="text-sm text-accent font-medium">Alimentos del Norte S.A.</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-4 italic">"La implementación del sistema integrado de IDN revolucionó nuestro proceso. Aumentamos la productividad 40% y eliminamos los desperdicios por mezcla inconsistente."</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+              Alimentario
+            </span>
+            <div class="flex text-yellow-400">
+              ★★★★★
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="flex items-center mb-4">
+            <img 
+              src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" 
+              alt="Ing. María López"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+            />
+            <div>
+              <h3 class="font-bold text-primary">Ing. María López</h3>
+              <p class="text-sm text-gray-600">Jefa de Planta</p>
+              <p class="text-sm text-accent font-medium">Química Industrial MX</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-4 italic">"El soporte técnico de IDN es excepcional. Nos ayudaron no solo con la instalación, sino con la optimización continua de nuestros procesos de dosificación."</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
+              Químico
+            </span>
+            <div class="flex text-yellow-400">
+              ★★★★★
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="flex items-center mb-4">
+            <img 
+              src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" 
+              alt="Ing. Roberto Jiménez"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+            />
+            <div>
+              <h3 class="font-bold text-primary">Ing. Roberto Jiménez</h3>
+              <p class="text-sm text-gray-600">Director de Operaciones</p>
+              <p class="text-sm text-accent font-medium">Farmacéutica Latina</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-4 italic">"Cumplimos con todas las normativas FDA gracias al sistema cerrado que nos proporcionó IDN. La contaminación cruzada es cosa del pasado."</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full">
+              Farmacéutico
+            </span>
+            <div class="flex text-yellow-400">
+              ★★★★★
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="flex items-center mb-4">
+            <img 
+              src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" 
+              alt="Ing. Ana Rodríguez"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+            />
+            <div>
+              <h3 class="font-bold text-primary">Ing. Ana Rodríguez</h3>
+              <p class="text-sm text-gray-600">Gerente de Calidad</p>
+              <p class="text-sm text-accent font-medium">Materiales Pétreos SA</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-4 italic">"La precisión en el pesaje mejoró significativamente nuestro control de calidad. Ahora tenemos trazabilidad completa en cada lote."</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs bg-orange-100 text-orange-800 px-3 py-1 rounded-full">
+              Construcción
+            </span>
+            <div class="flex text-yellow-400">
+              ★★★★★
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="flex items-center mb-4">
+            <img 
+              src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" 
+              alt="Ing. Diego Martínez"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+            />
+            <div>
+              <h3 class="font-bold text-primary">Ing. Diego Martínez</h3>
+              <p class="text-sm text-gray-600">Supervisor de Producción</p>
+              <p class="text-sm text-accent font-medium">Plásticos Industriales</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-4 italic">"El sistema de transporte neumático eliminó completamente los derrames y la contaminación. Nuestro proceso es ahora completamente limpio."</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs bg-red-100 text-red-800 px-3 py-1 rounded-full">
+              Plásticos
+            </span>
+            <div class="flex text-yellow-400">
+              ★★★★★
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="flex items-center mb-4">
+            <img 
+              src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop" 
+              alt="Ing. Laura Herrera"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+            />
+            <div>
+              <h3 class="font-bold text-primary">Ing. Laura Herrera</h3>
+              <p class="text-sm text-gray-600">Gerente de Planta</p>
+              <p class="text-sm text-accent font-medium">Petroquímica del Golfo</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-4 italic">"La integración con nuestro sistema SCADA fue perfecta. Ahora tenemos control total desde la sala de control."</p>
+          <div class="flex justify-between items-center">
+            <span class="text-xs bg-pink-100 text-pink-800 px-3 py-1 rounded-full">
+              Petroquímico
+            </span>
+            <div class="flex text-yellow-400">
+              ★★★★★
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before and After Results -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 animate-on-scroll">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+          Resultados Medibles
+        </h2>
+        <p class="text-xl text-gray-600">
+          Mejoras reales en eficiencia y productividad
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="text-center mb-4">
+            <h3 class="text-lg font-bold text-primary mb-2">Eficiencia de Mezclado</h3>
+            <p class="text-sm text-gray-600">Homogeneidad de mezcla en producción de harinas</p>
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-center">
+              <div class="text-red-500 font-bold">ANTES</div>
+              <div class="text-2xl font-bold text-gray-800">75%</div>
+            </div>
+            <div class="text-accent text-2xl">→</div>
+            <div class="text-center">
+              <div class="text-green-500 font-bold">DESPUÉS</div>
+              <div class="text-2xl font-bold text-gray-800">96%</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">+28% mejora</span>
+          </div>
+          <div class="mt-3 text-center">
+            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Alimentario</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="text-center mb-4">
+            <h3 class="text-lg font-bold text-primary mb-2">Precisión de Dosificación</h3>
+            <p class="text-sm text-gray-600">Precisión en formulación de medicamentos</p>
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-center">
+              <div class="text-red-500 font-bold">ANTES</div>
+              <div class="text-2xl font-bold text-gray-800">±2%</div>
+            </div>
+            <div class="text-accent text-2xl">→</div>
+            <div class="text-center">
+              <div class="text-green-500 font-bold">DESPUÉS</div>
+              <div class="text-2xl font-bold text-gray-800">±0.1%</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">20x mejor</span>
+          </div>
+          <div class="mt-3 text-center">
+            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Farmacéutico</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="text-center mb-4">
+            <h3 class="text-lg font-bold text-primary mb-2">Tiempo de Proceso</h3>
+            <p class="text-sm text-gray-600">Tiempo de ciclo en producción de pinturas</p>
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-center">
+              <div class="text-red-500 font-bold">ANTES</div>
+              <div class="text-2xl font-bold text-gray-800">45min</div>
+            </div>
+            <div class="text-accent text-2xl">→</div>
+            <div class="text-center">
+              <div class="text-green-500 font-bold">DESPUÉS</div>
+              <div class="text-2xl font-bold text-gray-800">28min</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">-38% tiempo</span>
+          </div>
+          <div class="mt-3 text-center">
+            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Químico</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="text-center mb-4">
+            <h3 class="text-lg font-bold text-primary mb-2">Desperdicio de Material</h3>
+            <p class="text-sm text-gray-600">Reducción de desperdicio en mezclas de cemento</p>
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-center">
+              <div class="text-red-500 font-bold">ANTES</div>
+              <div class="text-2xl font-bold text-gray-800">8%</div>
+            </div>
+            <div class="text-accent text-2xl">→</div>
+            <div class="text-center">
+              <div class="text-green-500 font-bold">DESPUÉS</div>
+              <div class="text-2xl font-bold text-gray-800">1.5%</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">-81% desperdicio</span>
+          </div>
+          <div class="mt-3 text-center">
+            <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Construcción</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="text-center mb-4">
+            <h3 class="text-lg font-bold text-primary mb-2">Consumo Energético</h3>
+            <p class="text-sm text-gray-600">Eficiencia energética en extrusión</p>
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-center">
+              <div class="text-red-500 font-bold">ANTES</div>
+              <div class="text-2xl font-bold text-gray-800">100kWh/t</div>
+            </div>
+            <div class="text-accent text-2xl">→</div>
+            <div class="text-center">
+              <div class="text-green-500 font-bold">DESPUÉS</div>
+              <div class="text-2xl font-bold text-gray-800">65kWh/t</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">-35% energía</span>
+          </div>
+          <div class="mt-3 text-center">
+            <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Plásticos</span>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-lg animate-on-scroll">
+          <div class="text-center mb-4">
+            <h3 class="text-lg font-bold text-primary mb-2">Paradas No Programadas</h3>
+            <p class="text-sm text-gray-600">Confiabilidad en sistemas de transporte</p>
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <div class="text-center">
+              <div class="text-red-500 font-bold">ANTES</div>
+              <div class="text-2xl font-bold text-gray-800">12/mes</div>
+            </div>
+            <div class="text-accent text-2xl">→</div>
+            <div class="text-center">
+              <div class="text-green-500 font-bold">DESPUÉS</div>
+              <div class="text-2xl font-bold text-gray-800">2/mes</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-bold">-83% paradas</span>
+          </div>
+          <div class="mt-3 text-center">
+            <span class="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">Petroquímico</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Sectors -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12 animate-on-scroll">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+          Sectores que Confiaron en Nosotros
+        </h2>
+        <p class="text-xl text-gray-600">
+          Experiencia probada en múltiples industrias
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">🍞</div>
+          <h3 class="font-semibold text-primary text-sm">Alimentario</h3>
+          <p class="text-xs text-gray-600">120+ proyectos</p>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">💊</div>
+          <h3 class="font-semibold text-primary text-sm">Farmacéutico</h3>
+          <p class="text-xs text-gray-600">85+ proyectos</p>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">⚗️</div>
+          <h3 class="font-semibold text-primary text-sm">Químico</h3>
+          <p class="text-xs text-gray-600">95+ proyectos</p>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">🏗️</div>
+          <h3 class="font-semibold text-primary text-sm">Construcción</h3>
+          <p class="text-xs text-gray-600">70+ proyectos</p>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">🔬</div>
+          <h3 class="font-semibold text-primary text-sm">Plásticos</h3>
+          <p class="text-xs text-gray-600">55+ proyectos</p>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">⛽</div>
+          <h3 class="font-semibold text-primary text-sm">Petroquímico</h3>
+          <p class="text-xs text-gray-600">40+ proyectos</p>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">⛏️</div>
+          <h3 class="font-semibold text-primary text-sm">Minero</h3>
+          <p class="text-xs text-gray-600">35+ proyectos</p>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">🏺</div>
+          <h3 class="font-semibold text-primary text-sm">Cerámico</h3>
+          <p class="text-xs text-gray-600">25+ proyectos</p>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">🧵</div>
+          <h3 class="font-semibold text-primary text-sm">Textil</h3>
+          <p class="text-xs text-gray-600">20+ proyectos</p>
+        </div>
+
+        <div class="text-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors animate-on-scroll">
+          <div class="text-3xl mb-2">🔗</div>
+          <h3 class="font-semibold text-primary text-sm">Siderúrgico</h3>
+          <p class="text-xs text-gray-600">15+ proyectos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="py-16 bg-accent text-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center animate-on-scroll">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          ¿Tu Empresa Será la Próxima en Nuestra Lista?
+        </h2>
+        <p class="text-xl text-gray-100 mb-8">
+          Únete a las empresas líderes que ya transformaron sus procesos con IDN Industrial
+        </p>
+        <Button href="/contacto" variant="white" size="lg">
+          Comenzar Nuestro Proyecto
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout> 

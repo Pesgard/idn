@@ -1,0 +1,299 @@
+---
+import { Image } from "astro:assets"
+
+import IDNlogo from "../assets/IDNlogo.png"
+---
+
+<header class="header-main fixed top-0 left-0 right-0 z-50 bg-primary backdrop-blur-md border-b border-gray-800 transition-all duration-300">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo IDN -->
+      <a href="/" class="flex items-center space-x-3 group">
+        <div class="logo-container">
+          <Image src={IDNlogo} alt="IDN" width={48} height={48} class="logo-icon" />
+        </div>
+        <div class="logo-text-container">
+          <span class="brand-name">IDN</span>
+          <span class="brand-subtitle">Sistemas Industriales</span>
+        </div>
+      </a>
+      
+      <!-- Navigation Desktop -->
+      <div class="hidden lg:flex items-center space-x-1">
+        <a href="/" class="nav-link active">Inicio</a>
+        <a href="/productos" class="nav-link">Productos</a>
+        <a href="/integraciones" class="nav-link">Integraciones</a>
+        <a href="/clientes" class="nav-link">Casos de Éxito</a>
+        <a href="/iciweb" class="nav-link">ICI Web</a>
+        <a href="/contacto" class="nav-link">Contacto</a>
+      </div>
+      
+      <!-- CTA and Mobile Menu -->
+      <div class="flex items-center space-x-4">
+        <!-- CTA Button -->
+        <a href="/contacto" class="btn btn-primary btn-sm hidden md:flex">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          Solicita tu Diagnóstico
+        </a>
+        
+        <!-- Mobile Menu Button -->
+        <button 
+          class="lg:hidden text-white hover:text-accent transition-colors p-2" 
+          id="mobile-menu-button"
+          aria-label="Abrir menú móvil"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="lg:hidden mt-4 pt-4 border-t border-gray-800 hidden" id="mobile-menu">
+      <div class="flex flex-col space-y-3">
+        <a href="/" class="nav-link-mobile active">Inicio</a>
+        <a href="/productos" class="nav-link-mobile">Productos</a>
+        <a href="/integraciones" class="nav-link-mobile">Integraciones</a>
+        <a href="/clientes" class="nav-link-mobile">Casos de Éxito</a>
+        <a href="/iciweb" class="nav-link-mobile">ICI Web</a>
+        <a href="/contacto" class="nav-link-mobile">Contacto</a>
+        
+        <!-- Mobile Contact Info -->
+        <div class="pt-4 mt-4 border-t border-gray-800">
+          <div class="text-gray-400 text-sm mb-2">Contáctanos directamente:</div>
+          <a href="tel:+525512345678" class="block text-accent hover:text-white mb-2">
+            📞 +52 (55) 1234-5678
+          </a>
+          <a href="mailto:info@idn-industrial.com" class="block text-accent hover:text-white">
+            ✉️ info@idn-industrial.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .header-main {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Logo Styling */
+  .logo-container {
+    position: relative;
+  }
+  
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .logo-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .group:hover .logo-icon::before {
+    transform: translateX(100%);
+  }
+  
+  .logo-text {
+    color: var(--color-white);
+    font-weight: var(--font-weight-extrabold);
+    font-size: 1.125rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .logo-text-container {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  
+  .brand-name {
+    color: var(--color-white);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+  }
+  
+  .brand-subtitle {
+    color: var(--color-gray-400);
+    font-weight: var(--font-weight-medium);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Navigation Links */
+  .nav-link {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    position: relative;
+    font-size: 0.9rem;
+  }
+  
+  .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-accent);
+    transform: translateY(-1px);
+  }
+  
+  .nav-link.active {
+    color: var(--color-accent);
+    background-color: rgba(251, 44, 54, 0.1);
+  }
+  
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+  }
+  
+  /* Mobile Navigation */
+  .nav-link-mobile {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    display: block;
+    border-left: 3px solid transparent;
+  }
+  
+  .nav-link-mobile:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-accent);
+    border-left-color: var(--color-accent);
+    padding-left: calc(var(--spacing-md) + 4px);
+  }
+  
+  .nav-link-mobile.active {
+    color: var(--color-accent);
+    background-color: rgba(251, 44, 54, 0.1);
+    border-left-color: var(--color-accent);
+  }
+  
+  /* Button adjustments */
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .brand-name {
+      font-size: 1.25rem;
+    }
+    
+    .brand-subtitle {
+      font-size: 0.7rem;
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .logo-text {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Scroll behavior */
+  .header-scrolled {
+    background-color: rgba(33, 33, 33, 0.98);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .header-scrolled .logo-icon {
+    transform: scale(0.9);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('.header-main');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = mobileMenuButton?.querySelector('svg');
+    
+    // Mobile menu toggle
+    mobileMenuButton?.addEventListener('click', () => {
+      const isHidden = mobileMenu?.classList.contains('hidden');
+      
+      if (isHidden) {
+        mobileMenu?.classList.remove('hidden');
+        // Change to X icon
+        if (menuIcon) {
+          menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+        }
+      } else {
+        mobileMenu?.classList.add('hidden');
+        // Change back to hamburger
+        if (menuIcon) {
+          menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+        }
+      }
+    });
+    
+    // Header scroll effect
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > 100) {
+        header?.classList.add('header-scrolled');
+      } else {
+        header?.classList.remove('header-scrolled');
+      }
+      
+      lastScrollY = currentScrollY;
+    });
+    
+    // Active link detection
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
+    
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      link.classList.remove('active');
+      
+      if (href && (href === currentPath || (href !== '/' && currentPath.startsWith(href)))) {
+        link.classList.add('active');
+      } else if (currentPath === '/' && href === '/') {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
